@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
         // User seeder for admin, manager and user account
         $this->call(UserSeeder::class);
 
+        // Answer seeder
+        $this->call(AnswerSeeder::class);
     }
 }

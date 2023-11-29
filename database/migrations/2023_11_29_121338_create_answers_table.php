@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->integer('answer'); // 6 different answers (ja, nee, ja zeker wel, ja enigzins, nee niet of nauwelijks, onduidelijk)
+            $table->string('answer');
             $table->timestamps();
         });
     }
