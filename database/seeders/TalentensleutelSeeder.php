@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TalentensleutelSeeder extends Seeder
 {
@@ -12,6 +13,13 @@ class TalentensleutelSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $Talentensleutels= [
+
+
+        ];
+
+        foreach ($Talentensleutels as $Talentensleutel) {
+            DB::table('Talentensleutels')->insert($Talentensleutel);
+        }
     }
 }
