@@ -35,6 +35,11 @@ Route::get('/raporten', function () {
     return view('/talentsleutel/raporten');
 });
 
+Route::get('/contact', function () {
+    return view('/talentsleutel/contact');
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
