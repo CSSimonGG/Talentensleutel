@@ -1,36 +1,70 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="NL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ $title }}</title>
+    @vite('resources/css/app.css')
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
+</head>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<body class=bg-white">
+<header class="bg-Apple h-16 flex justify-end items-center">
+    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white">
+        <i class="bi bi-house-door-fill"></i>
+        <i class='bx bx-phone' ></i>
+        <a href="/" class="text-[15px] ml-2 text-gray-200 font-bold">Contact</a>
+    </div>
+</header>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<main class="ml-[300px] p-4">
+    {{ $slot }}
+</main>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+<div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-Apple">
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    <div class="text-gray-100 text-xl">
+        <div class="p-2.5 mt-1 bg-Apple flex items-center">
+            <h1 class="font-bold text-gray-200 text-[35px] ml-3">
+                <img src="/images/Test.png" alt="Test Image" class="max-h-full" />
+            </h1>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <i
+                class="bi bi-x cursor-pointer ml-28 lg:hidden"
+            ></i>
         </div>
-    </body>
+        <div class="my-2 bg-gray-600 h-[1px]"></div>
+    </div>
+
+    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white">
+        <i class="bi bi-house-door-fill"></i>
+        <i class='bx bxs-home'></i>
+        <a href="/" class="text-[15px] ml-4 text-gray-200 font-bold">Home</a>
+    </div>
+    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white">
+        <i class="bi bi-house-door-fill"></i>
+        <i class='bx bx-question-mark' ></i>
+        <a href="/questionnaire" class="text-[15px] ml-4 text-gray-200 font-bold">Questionnaire</a>
+    </div>
+    <div
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white"
+    >
+        <i class="bi bi-bookmark-fill"></i>
+        <i class='bx bx-calendar' ></i>
+        <a href="/gesprek-inplannen" class="text-[15px] ml-4 text-gray-200 font-bold">Gesprek inplannen</a>
+    </div>
+    <div class="my-4 bg-gray-600 h-[1px]"></div>
+    <div
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white"
+    >
+        <i class="bi bi-box-arrow-in-right"></i>
+        <i class='bx bx-user' ></i>
+        <a href="/" class="text-[15px] ml-4 hover:bg-Forestgreen font-bold" >Account</a>
+    </div>
+
+</div>
+</body>
 </html>

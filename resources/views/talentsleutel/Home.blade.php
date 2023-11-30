@@ -1,8 +1,8 @@
-<x-main-layout>
-    <x-slot:titel>
+<x-app-layout>
+    <x-slot:title>
         Home
-    </x-slot:titel>
+    </x-slot:title>
     <div>
         test
     </div>
-</x-main-layout>
+</x-app-layout>
