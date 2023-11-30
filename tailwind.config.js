@@ -9,7 +9,7 @@ module.exports = {
         extend:{
             colors: {
 
-                'Apple': '#7AB92C',
+                'Apple': '#7AB628',
                 'Forestgreen': '#5A962C',
                 'CalPolygreen': '#304A1C',
                 'EnglishViolet': '#4D4E6A',

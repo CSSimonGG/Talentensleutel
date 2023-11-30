@@ -12,18 +12,18 @@
 </head>
 
 <body class=bg-white">
-<header class="bg-Apple h-16 flex justify-end items-center">
-    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white">
+<header class="bg-Apple h-16 flex justify-end items-center fixed top-0 right-0 z-20 w-full">
+    <div class="bg-Forestgreen flex items-center cursor-pointer text-white p-5">
         <i class="bi bi-house-door-fill"></i>
         <i class='bx bx-phone' ></i>
         <a href="/" class="text-[15px] ml-2 text-gray-200 font-bold">Contact</a>
     </div>
 </header>
-<main class="ml-[300px] p-4">
+<main class="ml-[300px] p-4 mt-14">
     {{ $slot }}
 </main>
 
-<div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-Apple">
+<div class="z-40 sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-Apple">
 
     <div class="text-gray-100 text-xl">
         <div class="p-2.5 mt-1 bg-Apple flex items-center">
