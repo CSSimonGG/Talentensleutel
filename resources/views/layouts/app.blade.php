@@ -55,9 +55,19 @@
         <i class='bx bx-calendar' ></i>
         <a href="/gesprek-inplannen" class="text-[15px] ml-4 text-gray-200 font-bold">Gesprek inplannen</a>
     </div>
+    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white">
+        <i class="bi bi-house-door-fill"></i>
+        <i class='bx bx-list-check'></i>
+        <a href="/resultaten" class="text-[15px] ml-4 text-gray-200 font-bold">Resultaten </a>
+    </div>
+    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white ">
+        <i class="bi bi-house-door-fill"></i>
+        <i class='bx bxs-report' ></i>
+        <a href="/raporten" class="text-[15px] ml-4 text-gray-200 font-bold">Raporten</a>
+    </div>
     <div class="my-4 bg-gray-600 h-[1px]"></div>
     <div
-        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white"
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-Forestgreen text-white fixed bottom-5"
     >
         <i class="bi bi-box-arrow-in-right"></i>
         <i class='bx bx-user' ></i>
