@@ -27,5 +27,8 @@ class DatabaseSeeder extends Seeder
 
         // Answer seeder
         $this->call(AnswerSeeder::class);
+
+        // Subject seeder
+        $this->call(SubjectSeeder::class);
     }
 }
