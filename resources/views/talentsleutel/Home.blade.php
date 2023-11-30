@@ -1,7 +1,7 @@
 <x-main-layout>
-    <x-slot:titel>
+    <x-slot:title>
         Home
-    </x-slot:titel>
+    </x-slot:title>
     <div>
         test
     </div>
