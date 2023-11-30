@@ -30,5 +30,11 @@ class DatabaseSeeder extends Seeder
 
         // Subject seeder
         $this->call(SubjectSeeder::class);
+
+        // Question seeder
+        $this->call(QuestionSeeder::class);
+
+        // Reasoning seeder
+        $this->call(ReasoningSeeder::class);
     }
 }

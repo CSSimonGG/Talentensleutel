@@ -13,6 +13,11 @@ class AnswerSeeder extends Seeder
      */
     public function run(): void
     {
+        // Open vraag
+        Answer::create([
+            'answer' => 'Open vraag',
+        ]);
+
         // Onduidelijk
         Answer::create([
             'answer' => 'Onduidelijk',
@@ -41,6 +46,16 @@ class AnswerSeeder extends Seeder
         // Nee, niet of nauwelijks
         Answer::create([
             'answer' => 'Nee, niet of nauwelijks',
+        ]);
+
+        // Ik heb de privacyverklaring gelezen en ga hiermee akkoord
+        Answer::create([
+            'answer' => 'Ik heb de privacyverklaring gelezen en ga hiermee akkoord',
+        ]);
+
+        // Nee
+        Answer::create([
+            'answer' => 'Ik ga niet akkoord met de privacyverklaring (wij zullen uw persoonsgegevens verwijderen)',
         ]);
     }
 }
