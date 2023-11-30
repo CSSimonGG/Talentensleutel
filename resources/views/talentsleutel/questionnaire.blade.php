@@ -16,8 +16,8 @@
             Ook het optimaliseren van interne processen en het beter afstemmen van taken en inspanningen op de organisatiedoelstellingen kunnen doelstellingen zijn.
         </p>
 
-        <div class="w-full h-6 bg-gray-200  dark:bg-Apple fixed bottom-5">
-            <div class="h-6 bg-Apple   dark:bg-blue-500" style="width: 2%"></div>
+        <div class="w-full h-6 bg-gray-200 fixed bottom-5">
+            <div class="h-6 bg-Apple" style="width: 2%"></div>
 
         </div>
         <?php
