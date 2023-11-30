@@ -27,6 +27,14 @@ Route::get('/gesprek-inplannen', function () {
     return view('/talentsleutel/calendar');
 });
 
+Route::get('/resultaten', function () {
+    return view('/talentsleutel/resultaten');
+});
+
+Route::get('/raporten', function () {
+    return view('/talentsleutel/raporten');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
