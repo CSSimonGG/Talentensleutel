@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot:title>
-        Home
+        Calendar
     </x-slot:title>
     <div>
-        Home
+        Calendar
     </div>
 </x-app-layout>

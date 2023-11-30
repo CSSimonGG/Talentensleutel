@@ -19,6 +19,14 @@ Route::get('/', function () {
     return view('/talentsleutel/home');
 });
 
+Route::get('/questionnaire', function () {
+    return view('/talentsleutel/questionnaire');
+});
+
+Route::get('/gesprek-inplannen', function () {
+    return view('/talentsleutel/calendar');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

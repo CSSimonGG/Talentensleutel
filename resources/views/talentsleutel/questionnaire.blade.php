@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot:title>
-        Home
+        Questionnaire
     </x-slot:title>
     <div>
-        Home
+        questionnaire
     </div>
 </x-app-layout>
