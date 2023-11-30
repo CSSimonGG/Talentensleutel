@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('question_id')->references('id')->on('questions');
             $table->unsignedBigInteger('reasoning_id');
             $table->foreign('reasoning_id')->references('id')->on('reasonings');
+            $table->string('open_question_answer');
             $table->timestamps();
         });
     }

@@ -16,8 +16,7 @@ class QuestionSeeder extends Seeder
         // question_type 0 = 'ja', 'nee'
         // question_type 1 = 'onduidelijk', 'Ja, zeker wel', 'Ja, enigzins', 'Nee, niet of nauwelijks'
         // question_type 2 = open question
-        // question_type 3 = multiple choice (drop down)
-        // question_type 4 = privacy question
+        // question_type 3 = privacy question
 
         // 1
         Question::create([
@@ -65,7 +64,7 @@ class QuestionSeeder extends Seeder
         Question::create([
              'subject_id' => '1', // Algemene Gegevens
             'question' => 'Branche',
-            'question_type' => '3',
+            'question_type' => '2',
         ]);
 
         // 8
@@ -452,7 +451,7 @@ class QuestionSeeder extends Seeder
         Question::create([
             'subject_id' => '12', // Kennis
             'question' => 'Privacyverklaring: https://zuidoostbrabant.leerwerkloket.nl/privacy',
-            'question_type' => '4', // Privacy
+            'question_type' => '3', // Privacy
         ]);
     }
 }

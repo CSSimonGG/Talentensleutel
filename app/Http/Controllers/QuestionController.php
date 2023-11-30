@@ -11,7 +11,7 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $question = Question::where('id', 33)->first();
+        $question = Question::where('id', 2)->first();
         return view('talentsleutel/questionnaire')
             ->with('question', $question);
     }
@@ -34,32 +34,71 @@ class QuestionController extends Controller
             $questionId = $request->question_id;
             $answerId = $request->answer_id;
 
-            // Query the reasoning table
-            $reasoning = Reasoning::where('question_id', $questionId)
-                ->where('answer_id', $answerId)
-                ->first();
+            // Retrieve the associated Question
+            $question = Question::findOrFail($questionId);
+            $questionType = $question->question_type;
 
-            if (!$reasoning) {
-                // Handle the case where reasoning doesn't exist
-                return response()->json(['error' => 'Reasoning not found'], 404);
+            // Check the question type
+            if ($questionType == 2) {
+                // Query the reasoning table
+                $reasoning = Reasoning::where('question_id', $questionId)
+                    ->where('answer_id', 1)
+                    ->first();
+
+                if (!$reasoning) {
+                    // Handle the case where reasoning doesn't exist
+                    return response()->json(['error' => 'Reasoning not found'], 404);
+                }
+                $reasoningId = $reasoning->id;
+
+                // Check if a result with the same user_id and reasoning_id exists
+                $existingResult = Result::where('user_id', $userId)
+                    ->where('question_id', $questionId)
+                    ->first();
+
+                if ($existingResult) {
+                    // If the result already exists, update the reasoning_id
+                    $existingResult->update(['open_question_answer' => $answerId]);
+                } else {
+                    // If the result doesn't exist, create a new one
+                    Result::create([
+                        'user_id' => $userId,
+                        'question_id' => $questionId,
+                        'reasoning_id' => $reasoningId,
+                        'open_question_answer' => $answerId,
+                    ]);
+                }
             }
-            $reasoningId = $reasoning->id;
+            else
+            {
+                // Query the reasoning table
+                $reasoning = Reasoning::where('question_id', $questionId)
+                    ->where('answer_id', $answerId)
+                    ->first();
 
-            // Check if a result with the same user_id and reasoning_id exists
-            $existingResult = Result::where('user_id', $userId)
-                ->where('question_id', $questionId)
-                ->first();
+                if (!$reasoning) {
+                    // Handle the case where reasoning doesn't exist
+                    return response()->json(['error' => 'Reasoning not found'], 404);
+                }
+                $reasoningId = $reasoning->id;
 
-            if ($existingResult) {
-                // If the result already exists, update the reasoning_id
-                $existingResult->update(['reasoning_id' => $reasoningId]);
-            } else {
-                // If the result doesn't exist, create a new one
-                Result::create([
-                    'user_id' => $userId,
-                    'question_id' => $questionId,
-                    'reasoning_id' => $reasoningId,
-                ]);
+                // Check if a result with the same user_id and reasoning_id exists
+                $existingResult = Result::where('user_id', $userId)
+                    ->where('question_id', $questionId)
+                    ->first();
+
+                if ($existingResult) {
+                    // If the result already exists, update the reasoning_id
+                    $existingResult->update(['reasoning_id' => $reasoningId]);
+                } else {
+                    // If the result doesn't exist, create a new one
+                    Result::create([
+                        'user_id' => $userId,
+                        'question_id' => $questionId,
+                        'reasoning_id' => $reasoningId,
+                        'open_question_answer' => '',
+                    ]);
+                }
             }
 
             // You can return a response or redirect to the next question
