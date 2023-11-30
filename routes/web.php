@@ -16,7 +16,7 @@ use App\Http\Controllers\SleutelController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('talentsleutel/home');
 });
 
 Route::get('/dashboard', function () {
