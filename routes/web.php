@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SleutelController;
 
@@ -15,35 +16,45 @@ use App\Http\Controllers\SleutelController;
 |
 */
 
+// Home page
 Route::get('/', function () {
     return view('/talentsleutel/home');
 });
 
-Route::get('/questionnaire', function () {
-    return view('/talentsleutel/questionnaire');
-});
+// Questionnaire routes
+Route::middleware('auth', 'role:user')->group(
+    function () {
+        Route::get('/questionnaire', [QuestionController::class, 'index']);
+        Route::post('/questionnaire', [QuestionController::class, 'store']);
+    }
+);
 
+// Planning page
 Route::get('/gesprek-inplannen', function () {
     return view('/talentsleutel/calendar');
 });
 
+// Result page
 Route::get('/resultaten', function () {
     return view('/talentsleutel/resultaten');
 });
 
+// Raport page
 Route::get('/raporten', function () {
     return view('/talentsleutel/raporten');
 });
 
+// Contact page
 Route::get('/contact', function () {
     return view('/talentsleutel/contact');
 });
 
-
+// Dasboard page (not used (yet))
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// User profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
