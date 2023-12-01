@@ -453,5 +453,12 @@ class QuestionSeeder extends Seeder
             'question' => 'Privacyverklaring: https://zuidoostbrabant.leerwerkloket.nl/privacy',
             'question_type' => '3', // Privacy
         ]);
+
+        // 63 (end)
+        Question::create([
+            'subject_id' => '12', // Kennis
+            'question' => 'Bedankt voor het invullen van de questionnaire',
+            'question_type' => '4',
+        ]);
     }
 }
