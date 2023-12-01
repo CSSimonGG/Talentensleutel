@@ -11,7 +11,7 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $question = Question::where('id', 17)->first();
+        $question = Question::where('id', 1)->first();
         return view('talentsleutel/questionnaire')
             ->with('question', $question);
     }
