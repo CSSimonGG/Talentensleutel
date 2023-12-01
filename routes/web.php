@@ -24,29 +24,39 @@ Route::get('/', function () {
 // Questionnaire routes
 Route::middleware('auth', 'role:user')->group(
     function () {
+        // Show questionnaire page
         Route::get('/questionnaire', [QuestionController::class, 'index']);
+
+        // Save questionnaire data
         Route::post('/questionnaire', [QuestionController::class, 'store']);
+
+        // Load question
+        Route::get('/load-question/{questionId}', [QuestionController::class, 'loadQuestionById']);
     }
 );
 
-// Load question
-Route::get('/load-question/{questionId}', [QuestionController::class, 'loadQuestionById']);
+Route::middleware('auth', 'role:user|manager')->group(
+    function () {
+        // Planning page
+        Route::get('/gesprek-inplannen', function () {
+            return view('/talentsleutel/calendar');
+        });
+    }
+);
 
+Route::middleware('auth', 'role:manager')->group(
+    function () {
+        // Result page
+        Route::get('/resultaten', function () {
+            return view('/talentsleutel/resultaten');
+        });
 
-// Planning page
-Route::get('/gesprek-inplannen', function () {
-    return view('/talentsleutel/calendar');
-});
-
-// Result page
-Route::get('/resultaten', function () {
-    return view('/talentsleutel/resultaten');
-});
-
-// Raport page
-Route::get('/raporten', function () {
-    return view('/talentsleutel/raporten');
-});
+        // Raport page
+        Route::get('/raporten', function () {
+            return view('/talentsleutel/raporten');
+        });
+    }
+);
 
 // Contact page
 Route::get('/contact', function () {

@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@test.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        ])->assignRole('manager', 'admin');
+        ])->assignRole('user', 'manager', 'admin');
 
         // Manager account
         User::create([
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'email' => 'user@test.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        ])->assignRole('user', 'manager');
+        ])->assignRole('user');
 
     }
 }
