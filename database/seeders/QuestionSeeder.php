@@ -136,7 +136,7 @@ class QuestionSeeder extends Seeder
         Question::create([
             'subject_id' => '3', // Missie
             'question' => 'Beschrijf de missie, visie en/of (kern) waarden van uw organisatie',
-            'question_type' => '1',
+            'question_type' => '2',
         ]);
 
         // 18

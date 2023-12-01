@@ -29,6 +29,10 @@ Route::middleware('auth', 'role:user')->group(
     }
 );
 
+// Load question
+Route::get('/load-question/{questionId}', [QuestionController::class, 'loadQuestionById']);
+
+
 // Planning page
 Route::get('/gesprek-inplannen', function () {
     return view('/talentsleutel/calendar');
@@ -51,7 +55,7 @@ Route::get('/contact', function () {
 
 // Dasboard page (not used (yet))
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // User profile

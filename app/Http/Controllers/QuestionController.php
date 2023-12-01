@@ -11,10 +11,17 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $question = Question::where('id', 2)->first();
+        $question = Question::where('id', 17)->first();
         return view('talentsleutel/questionnaire')
             ->with('question', $question);
     }
+
+    public function loadQuestionById($questionId)
+    {
+        $question = Question::findOrFail($questionId);
+        return view('talentsleutel.question_partial', compact('question'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

@@ -2,7 +2,7 @@
     <x-slot:title>
         Questionnaire
     </x-slot:title>
-    <div>
+    <div id="questionContainer">
         <!-- Question Display -->
         <h2 class="p-4 font-bold text-xl">{{ $question->question }}</h2>
 
@@ -56,9 +56,9 @@
 
         <!-- Navigation Buttons -->
         <div class="absolute bottom-16 space-x-6 text-xl font-bold">
-            <button class="hover:bg-gray-200 p-2 rounded-full">Previous</button>
+            <button onclick="loadPreviousQuestion()" class="hover:bg-gray-200 p-2 rounded-full">Previous</button>
             <span>{{ $question->id }}/62</span>
-            <button type="button" onclick="submitForm()">Next</button>
+            <button onclick="submitFormAndLoadNextQuestion()" class="hover:bg-gray-200 p-2 rounded-full">Next</button>
         </div>
 
         <!-- Progress bar -->
@@ -69,42 +69,76 @@
             @endphp
             <div class="h-6 bg-Apple" style="width: {{ $progressPercentage }}%"></div>
         </div>
-
-        <script>
-            let selectedAnswer = null;
-
-            function submitForm() {
-                if (selectedAnswer !== null) {
-                    document.querySelector('input[name="answer_id"]').value = selectedAnswer;
-
-                    // Perform an Ajax request to submit the form data
-                    const formData = new FormData(document.getElementById('questionForm'));
-                    fetch('/questionnaire', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        },
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            // Update content based on the response
-                            console.log(data);
-                            // You can update the content or redirect as needed
-                        })
-                        .catch(error => console.error('Error:', error));
-                } else {
-                    // Handle the case where no answer is selected
-                    alert('Please select an answer before clicking Next.');
-                }
-            }
-
-            document.querySelectorAll('input[name="answer_id"]').forEach(function(input) {
-                input.addEventListener('change', function() {
-                    selectedAnswer = this.value;
-                });
-            });
-        </script>
     </div>
+
+    <script>
+        let selectedAnswer = null;
+
+        function submitForm() {
+            if (selectedAnswer !== null) {
+                document.querySelector('input[name="answer_id"]').value = selectedAnswer;
+
+                // Perform an Ajax request to submit the form data
+                const formData = new FormData(document.getElementById('questionForm'));
+                fetch('/questionnaire', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update content based on the response
+                        console.log(data);
+                        selectedAnswer = null;
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                // Handle the case where no answer is selected
+                alert('Please select an answer before clicking Next.');
+            }
+        }
+
+        // Function to attach event listeners
+        function attachEventListeners() {
+            document.querySelectorAll('input[name="answer_id"]').forEach(function (input) {
+                input.addEventListener('change', handleAnswerChange);
+            });
+        }
+
+        // Function to handle answer change
+        function handleAnswerChange() {
+            selectedAnswer = this.value;
+        }
+
+        let currentQuestionId = {{ $question->id }};
+
+        function loadPreviousQuestion() {
+            if (currentQuestionId > 1) {
+                currentQuestionId--;
+                loadQuestionById(currentQuestionId);
+            }
+        }
+
+        function submitFormAndLoadNextQuestion() {
+            submitForm(); // Your existing function to submit the form
+            currentQuestionId++;
+            loadQuestionById(currentQuestionId);
+        }
+
+        function loadQuestionById(questionId) {
+            // Use AJAX to dynamically load the question by ID
+            fetch(`/load-question/${questionId}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('questionContainer').innerHTML = data;
+                    attachEventListeners();
+                })
+                .catch(error => console.error('Error loading question:', error));
+        }
+
+        attachEventListeners();
+    </script>
 </x-app-layout>
 
